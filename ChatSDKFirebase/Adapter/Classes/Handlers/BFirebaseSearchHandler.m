@@ -45,8 +45,10 @@
                         if(meta && [meta[index] containsString:value]) {
                             CCUserWrapper * wrapper = [FirebaseNetworkAdapterModule.shared.firebaseProvider userWrapperWithSnapshot:[snapshot childSnapshotForPath:key]];
                             if(![wrapper.model isEqual:BChatSDK.currentUser]) {
-                                userAdded(wrapper.model);
-                                [users addObject:wrapper.model];
+                                if ([meta[bNameKey] isEqualToString:key] == NO) {
+                                    userAdded(wrapper.model);
+                                    [users addObject:wrapper.model];
+                                }
                             }
                         }
                     }

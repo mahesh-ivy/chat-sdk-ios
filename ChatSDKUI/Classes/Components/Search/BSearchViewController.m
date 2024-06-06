@@ -153,6 +153,9 @@
     
     [tableView registerNib:[UINib nibWithNibName:@"BUserCell" bundle:[NSBundle uiBundle]] forCellReuseIdentifier:bCellIdentifier];
     
+    tableView.estimatedRowHeight = 54;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    
     self.noUsersFoundLabel.text = [NSBundle t:bNoNewUsersFoundForThisSearch];
     self.noUsersFoundView.hidden = YES;
     

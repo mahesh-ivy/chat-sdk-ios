@@ -109,8 +109,8 @@
 }
 
 -(void) imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:NO completion:^{
-        [self.navigationController popViewControllerAnimated:NO];
+    [picker dismissViewControllerAnimated:YES completion:^{
+        [self.navigationController popViewControllerAnimated:YES];
     }];
     [[UIApplication sharedApplication] setStatusBarHidden:NO];
 }

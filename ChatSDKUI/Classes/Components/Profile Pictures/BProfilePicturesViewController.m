@@ -182,7 +182,7 @@
 }
 
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
-    [picker dismissViewControllerAnimated:NO completion:Nil];
+    [picker dismissViewControllerAnimated:YES completion:Nil];
 }
 
 #pragma mark <UIGestureRecognizerDelegate>

@@ -36,7 +36,6 @@
     unreadView.layer.borderWidth = 1.0;
     unreadView.layer.cornerRadius = unreadView.fh / 2.0;
     
-    
     unreadMessagesLabel.layer.cornerRadius = 5;
     unreadMessagesLabel.clipsToBounds = YES;
     

@@ -96,6 +96,9 @@
     
     [tableView registerNib:[UINib nibWithNibName:@"BUserCell" bundle:[NSBundle uiBundle]] forCellReuseIdentifier:bUserCellIdentifier];
 
+    tableView.estimatedRowHeight = 54;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    
     [self setGroupNameHidden:YES duration:0];
     
     [groupImageView loadThreadImage:nil];
@@ -245,9 +248,9 @@
     return cell;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 50;
+//}
 
 - (void)tableView:(UITableView *)tableView_ didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     

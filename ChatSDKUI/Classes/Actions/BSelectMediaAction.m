@@ -108,6 +108,7 @@
                 }
                 
             }
+            [picker dismissViewControllerAnimated:YES completion:Nil];
 //        }];
         
 //        UIImage * image = [info objectForKey:UIImagePickerControllerOriginalImage];
@@ -203,6 +204,10 @@
         }];
 
     }
+}
+
+- (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
+    [picker dismissViewControllerAnimated:YES completion:Nil];
 }
 
 -(void) processSelectedImage: (UIImage *) image error: (NSString *) error {

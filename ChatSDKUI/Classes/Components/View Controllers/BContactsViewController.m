@@ -78,6 +78,9 @@
     
     [tableView registerNib:[UINib nibWithNibName:@"BUserCell" bundle:[NSBundle uiBundle]] forCellReuseIdentifier:bCellIdentifier];
     
+    tableView.estimatedRowHeight = 54;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    
     self.navigationItem.titleView = [BReconnectingView new];
 
 }
@@ -217,9 +220,9 @@
     return Nil;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return bUserCellRowHeight;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return bUserCellRowHeight;
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView_ cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     

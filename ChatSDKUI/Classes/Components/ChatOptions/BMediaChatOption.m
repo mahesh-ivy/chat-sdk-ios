@@ -70,7 +70,7 @@
 }
 
 - (RXPromise * ) execute: (UIViewController *) viewController threadEntityID: (NSString *) threadEntityID handler:(id<PChatOptionsHandler>)handler {
-    BSelectMediaAction * action =  [[BSelectMediaAction alloc] initWithType:_type viewController:viewController cropEnabled:_cropperEnabled];
+    BSelectMediaAction * action =  [[BSelectMediaAction alloc] initWithType:_type viewController:viewController squareCrop:YES];
     return [action execute].thenOnMain(^id(id success) {
         if(action.videoData && action.coverImage && BChatSDK.videoMessage) {
             return [BChatSDK.videoMessage sendMessageWithVideo:action.videoData coverImage:action.coverImage withThreadEntityID:threadEntityID];

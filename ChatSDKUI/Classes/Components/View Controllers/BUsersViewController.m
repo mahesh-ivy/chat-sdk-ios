@@ -119,6 +119,9 @@ typedef void(^Action)();
     [tableView registerClass:[BImageCell class] forCellReuseIdentifier:bImageCellIdentifier];
     [tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:bCell];
     
+    tableView.estimatedRowHeight = 54;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    
     __weak __typeof(self) weakSelf = self;
     _internetConnectionHook = [BHook hookOnMain:^(NSDictionary * data) {
         if(!BChatSDK.connectivity.isConnected) {
@@ -444,7 +447,7 @@ typedef void(^Action)();
     if (indexPath.section == self.imageSection) {
         return 120;
     }
-    return 55;
+    return UITableViewAutomaticDimension;
 }
 
 - (void)reloadData {

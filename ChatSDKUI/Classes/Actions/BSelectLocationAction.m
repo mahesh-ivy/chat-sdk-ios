@@ -38,6 +38,12 @@
     return _locationManager;
 }
 
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [self.locationManager startUpdatingLocation];
+    }
+}
+
 - (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations {
     
     [manager stopUpdatingLocation];

@@ -60,6 +60,9 @@
     
     [tableView registerNib:[UINib nibWithNibName:@"BThreadCell" bundle:[NSBundle uiBundle]] forCellReuseIdentifier:bCellIdentifier];
     
+    tableView.estimatedRowHeight = 70;
+    tableView.rowHeight = UITableViewAutomaticDimension;
+    
     self.navigationItem.titleView = [BReconnectingView new];
     
     __weak __typeof(self) weakSelf = self;
@@ -256,9 +259,9 @@
     return UITableViewCellEditingStyleDelete;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return 70;
+//}
 
 // Called when a thread is to be deleted
 - (void)tableView:(UITableView *)tableView_ commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *) indexPath {
