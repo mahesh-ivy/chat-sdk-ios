@@ -28,7 +28,9 @@
 }
 
 -(RXPromise *) uploadFile:(NSData *)file withName: (NSString *) name mimeType: (NSString *) mimeType {
-    assert(NO);
+  assert(NO);
+  NSError * error = [NSError errorWithDomain:@"Error" code:-1 userInfo:@{NSLocalizedDescriptionKey: @"Method forbidden"}];
+  return [RXPromise rejectWithReason:error];
 }
 
 // By default we assume that we don't need to upload the
