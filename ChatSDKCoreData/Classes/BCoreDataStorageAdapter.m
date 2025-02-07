@@ -415,6 +415,7 @@ static void * kMainQueueKey = (void *) "Key1";
     return _store;
 }
 
+
 - (NSString *)applicationDocumentsDirectory {
     return [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) lastObject];
 }
@@ -597,6 +598,22 @@ static void * kMainQueueKey = (void *) "Key1";
     return [self unreadMessagesCountWithPredicate:predicate];
 }
 
+-(NSArray<PMessage>*) fetchMessagesWithFailedDecryption {
+    
+    NSString * currentUserEntityID = BChatSDK.currentUserID;
+    NSPredicate * predicate = [NSPredicate predicateWithFormat:@"message.userAccountID = %@ AND message.encryptedText = nil", currentUserEntityID];
+    
+    NSFetchRequest * request = [[NSFetchRequest alloc] init];
+    request.includesPendingChanges = YES;
+            
+    NSArray * messages = [self executeFetchRequest:request
+                                               entityName:bMessageEntity
+                                                predicate:predicate
+                                                  context: _mainMoc];
+
+    return messages;
+}
+
 -(int) unreadMessagesCountNow: (NSString *) threadEntityID {
     __block int count = 0;
     [_mainMoc performBlockAndWait:^{
@@ -651,6 +668,8 @@ static void * kMainQueueKey = (void *) "Key1";
 
     return messages;
 }
+
+
 
 
 /// https://stackoverflow.com/questions/36338135/nsmanagedobjectcontext-how-to-update-child-when-parent-changes
