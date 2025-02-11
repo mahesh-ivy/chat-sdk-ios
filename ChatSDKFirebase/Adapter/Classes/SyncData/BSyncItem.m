@@ -45,6 +45,7 @@
 
 -(NSDictionary *) serialize {
     assert(NO);
+    return [NSDictionary new];
 }
 
 -(void) deserialize: (NSDictionary *) dict {
@@ -53,6 +54,7 @@
 
 -(NSString *) path {
     assert(NO);
+    return @"";
 }
 
 -(RXPromise *) on {
