@@ -35,7 +35,10 @@ public class QRCodeViewController: UIViewController {
     
     @objc public func setCode(code: String) {
         self.code = code
-        if let image = EFQRCode.generate(content: code, watermark: style?.cgImage) {
+        let generator = try? EFQRCode.Generator(code, style: .image(
+            params: .init(image: .init(image: .static(image: (style?.cgImage)!), allowTransparent: true)))
+        )
+        if let image = try? generator?.toImage(width: 180).cgImage {
             qrImage = UIImage(cgImage: image)
         }
     }
