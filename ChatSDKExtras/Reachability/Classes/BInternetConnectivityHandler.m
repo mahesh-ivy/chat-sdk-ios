@@ -7,22 +7,29 @@
 
 #import "BInternetConnectivityHandler.h"
 #import <ChatSDK/Core.h>
-#import <Reachability/Reachability.h>
+#import <Network/Network.h>
 
-@implementation BInternetConnectivityHandler
+@implementation BInternetConnectivityHandler {
+    nw_path_monitor_t _monitor;
+    BOOL _isConnected;
+}
 
 -(instancetype) init {
     if ((self = [super init])) {
-        [[Reachability reachabilityForInternetConnection] startNotifier];
-        [[NSNotificationCenter defaultCenter] addObserverForName:kReachabilityChangedNotification object:Nil queue:Nil usingBlock:^(NSNotification * notification) {
+        _isConnected = YES;
+        _monitor = nw_path_monitor_create();
+        nw_path_monitor_set_update_handler(_monitor, ^(nw_path_t path) {
+            self->_isConnected = nw_path_get_status(path) == nw_path_status_satisfied;
             [BHookNotification notificationInternetConnectivityDidChange];
-        }];
+        });
+        nw_path_monitor_set_queue(_monitor, dispatch_get_main_queue());
+        nw_path_monitor_start(_monitor);
     }
     return self;
 }
 
 -(BOOL) isConnected {
-    return [Reachability reachabilityForInternetConnection].isReachable;
+    return _isConnected;
 }
 
 @end
